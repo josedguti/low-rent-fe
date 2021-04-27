@@ -2,6 +2,7 @@ import './App.css';
 
 // Imported Pages 
 import HomePage from './Pages/HomePage/HomePage'
+import MensPage from './Pages/MensPage/MensPage'
 
 // Imported Components
 
@@ -13,8 +14,10 @@ function App() {
       <Switch>
       <Route exact path = "/" render={(props) => 
       <HomePage />
-      
-    } />
+      } />
+      <Route exact path = "/mens" render={(props) =>
+      <MensPage/>
+      } />
     </Switch>
     </div>
   );

@@ -1,4 +1,4 @@
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Nav.css';
 
 const Nav = (props) => {
@@ -13,15 +13,14 @@ const Nav = (props) => {
     return (
         <nav>
             <ul>
-                {/* TODO - Add Link to Home, Categories, and Cart */}
-                <li>Home</li>
+                <Link to='/'><li>Home</li></Link>
                 {
                     user ? // change to props.user once authentication and state are added
                     <>
-                        <li>Men's</li>
-                        <li>Women's</li>
-                        <li>Cart</li>
-                        <li>Logout</li>
+                    <Link to='/mens'><li>Men's</li></Link>
+                    <Link to='/womens'><li>Women's</li></Link>
+                    <Link to='/checkout'><li>Checkout</li></Link>
+                    <li>Logout</li>
                     </>
                     :
                     <li>Login</li>

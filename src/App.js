@@ -1,8 +1,10 @@
 import './App.css';
 
 // Imported Pages 
-import HomePage from './Pages/HomePage/HomePage'
-import MensPage from './Pages/MensPage/MensPage'
+import HomePage from './Pages/HomePage/HomePage';
+import MensPage from './Pages/MensPage/MensPage';
+import WomensPage from './Pages/WomensPage/WomensPage';
+import Checkout from './Pages/Checkout/Checkout';
 
 // Imported Components
 
@@ -17,6 +19,12 @@ function App() {
       } />
       <Route exact path = "/mens" render={(props) =>
       <MensPage/>
+      } />
+      <Route exact path = "/womens" render={(props) =>
+      <WomensPage/>
+      } />
+      <Route exact path = "/checkout" render={(props) => 
+      <Checkout />
       } />
     </Switch>
     </div>

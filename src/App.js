@@ -7,15 +7,31 @@ import WomensPage from './Pages/WomensPage/WomensPage';
 import Checkout from './Pages/Checkout/Checkout';
 
 // Imported Components
-
+import { auth } from './services/firebase';
+import { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom'
 import Footer from './components/Footer/Footer';
 import Nav from './components/Nav/Nav';
 
 function App() {
+  const [user, setUser] = useState(null);
+    
+      useEffect(() => {
+        const cancelSubscription = auth.onAuthStateChanged(userInfo => {
+          setUser(userInfo);
+        });
+
+        return function() { // cleanup function
+          cancelSubscription();
+        }
+      }, [user]);
+
   return (
     <div className="App">
-      <Nav />
+      <Nav
+        user={user}
+        setUser={setUser}
+      />
       <Switch>
       <Route exact path = "/" render={(props) => 
       <HomePage />

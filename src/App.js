@@ -1,14 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
-import Header from './components/Header/Header'
+
+// Imported Pages 
+import HomePage from './Pages/HomePage/HomePage'
+
+// Imported Components
+
+import { Route, Switch } from 'react-router-dom'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-       Home Page
-       <Header />
-      </header>
+      <Switch>
+      <Route exact path = "/" render={(props) => 
+      <HomePage />
+      
+    } />
+    </Switch>
     </div>
   );
 }

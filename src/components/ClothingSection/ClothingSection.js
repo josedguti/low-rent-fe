@@ -1,4 +1,3 @@
-import shirtImage from '../../img/shirt.png';
 import ClothingCard from '../ClothingCard/ClothingCard';
 import blackshirt from '../../img/blackshirt.jpg';
 import whiteshirt from '../../img/whiteshirt.jpg';

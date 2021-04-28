@@ -3,7 +3,7 @@ import ClothingSection from '../../components/ClothingSection/ClothingSection';
 function MensPage(props) {
     return (
         <div>
-        <p>This is the Mens Page</p>
+        <h2></h2>
         <ClothingSection/>
         
         </div>

@@ -1,7 +1,7 @@
 function WomensPage(props) {
     return (
         <div>
-        <p>This is the Women's Page</p>
+        <p></p>
         
         </div>
     );

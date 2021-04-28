@@ -18,8 +18,13 @@
     font-size: 20px;
     width: 100%;
     text-align: center;
-    border-top: 1px groove black;
     position: fixed;
+    font-weight: 300;
     bottom: 0;
 
+}
+
+.model {
+  width: 50%;
+  height: 50% ;
 }

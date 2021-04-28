@@ -10,9 +10,11 @@ const Nav = (props) => {
                 {
                     props.user ?
                     <>
+
                     <Link style={{textDecoration: 'none', color: 'white'}} to='/mens'><li>Men's</li></Link>
                     <Link style={{textDecoration: 'none', color: 'white'}} to='/womens'><li>Women's</li></Link>
                     <Link style={{textDecoration: 'none', color: 'white'}}to='/checkout'><li>Checkout</li></Link>
+
                     <li onClick={logout}>Logout</li>
                     </>
                     :

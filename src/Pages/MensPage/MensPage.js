@@ -1,10 +1,10 @@
-import ClothingCard from '../../components/ClothingCard/ClothingCard';
+import ClothingSection from '../../components/ClothingSection/ClothingSection';
 
 function MensPage(props) {
     return (
         <div>
         <p>This is the Mens Page</p>
-        <ClothingCard/>
+        <ClothingSection/>
         
         </div>
     );

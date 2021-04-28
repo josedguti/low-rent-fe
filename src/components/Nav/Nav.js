@@ -10,6 +10,7 @@ const Nav = (props) => {
                 {
                     props.user ?
                     <>
+                    <h1>Low-Rent</h1>
                     <Link to='/mens'><li>Men's</li></Link>
                     <Link to='/womens'><li>Women's</li></Link>
                     <Link to='/checkout'><li>Checkout</li></Link>

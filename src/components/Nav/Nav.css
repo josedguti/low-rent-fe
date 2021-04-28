@@ -2,8 +2,23 @@ nav ul {
     list-style-type: none;
     display: flex;
     justify-content: flex-end;
+    margin-top: 0;
 }
 
 nav ul li {
     margin: 0 10px;
+}
+
+.title {
+    font-size: 30px;
+    position: fixed;
+    left: 0;
+}
+
+nav {
+  height: 3rem;
+  box-shadow: 3px 3px 3px 3px #808080;
+  color: #ffffff;
+  background-color: #282c34;
+  font-family:Verdana, Geneva, Tahoma, sans-serif
 }

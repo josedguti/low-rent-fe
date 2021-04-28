@@ -6,13 +6,15 @@ const Nav = (props) => {
     return (
         <nav>
             <ul>
-                <Link to='/'><li>Home</li></Link>
+                <Link style={{textDecoration: 'none', color: 'white'}} className="title" to='/'><li>Low-Rent</li></Link>
                 {
                     props.user ?
                     <>
-                    <Link to='/mens'><li>Men's</li></Link>
-                    <Link to='/womens'><li>Women's</li></Link>
-                    <Link to='/checkout'><li>Checkout</li></Link>
+
+                    <Link style={{textDecoration: 'none', color: 'white'}} to='/mens'><li>Men's</li></Link>
+                    <Link style={{textDecoration: 'none', color: 'white'}} to='/womens'><li>Women's</li></Link>
+                    <Link style={{textDecoration: 'none', color: 'white'}}to='/checkout'><li>Checkout</li></Link>
+
                     <li onClick={logout}>Logout</li>
                     </>
                     :

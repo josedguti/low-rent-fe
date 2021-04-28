@@ -1,6 +1,6 @@
 function Footer(props) {
     return (
-        <div className="footer"><strong>Copyright &copy; All Rights Reserved 2021 Clothing Site</strong></div>
+        <div className="footer">Copyright &copy; All Rights Reserved 2021 Low-Rent</div>
     );
 }
 

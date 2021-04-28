@@ -1,11 +1,10 @@
-import Header from '../../components/Header/Header';
+import model from '../../img/model.jpg'
+
 
 function HomePage(props) {
     return (
         <div>
-
-        <p>This is the Home Page</p>
-        
+            <img className="model" src={model} />;
         </div>
     );
 };

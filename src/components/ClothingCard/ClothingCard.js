@@ -8,7 +8,7 @@ function ClothingCard(props) {
     console.log('name: ', evt.target.name.value);
     console.log('price: ', evt.target.price.value);
     console.log('description: ', evt.target.description.value);
-    console.log('imagePath: ', evt.target.imagePath.value);
+    console.log('picture: ', evt.target.picture.value);
     console.log('size: ', evt.target.size.value);
   }
 
@@ -22,7 +22,7 @@ function ClothingCard(props) {
             <input type="hidden" name="name" value={props.clothing.name} />
             <input type="hidden" name="price" value={props.clothing.price} />
             <input type="hidden" name="description" value={props.clothing.description} />
-            <input type="hidden" name="imagePath" value={props.clothing.imagePath} />
+            <input type="hidden" name="picture" value={props.clothing.picture} />
             <div className="button-row">
             <label className="item-size" htmlFor="size"> Size:
               <select name="size" id="size">

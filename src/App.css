@@ -8,17 +8,21 @@
     font-size: 20px;
     width: 100%;
     text-align: center;
-    position: fixed;
-    font-weight: 300;
-    margin-top: 20px;
+    display: block;
+    left: 0;
     bottom: 0;
+    height: 38px;
+}
 
+.footer img {
+  width: 30px;
+  margin: 5px;
+  margin-top: 0px;
 }
 
 .model {
   width: 50%;
   height: 50%;
-
 }
 
 .model-container {

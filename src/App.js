@@ -1,5 +1,8 @@
 import './App.css';
-import { Link } from 'react-router-dom';
+import { auth } from './services/firebase';
+import { useEffect, useState } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import { fetchClothes } from './services/api-service';
 
 // Imported Pages 
 import HomePage from './Pages/HomePage/HomePage';
@@ -8,9 +11,6 @@ import WomensPage from './Pages/WomensPage/WomensPage';
 import Checkout from './Pages/Checkout/Checkout';
 
 // Imported Components
-import { auth } from './services/firebase';
-import { useEffect, useState } from 'react';
-import { Route, Switch } from 'react-router-dom'
 import Footer from './components/Footer/Footer';
 import Nav from './components/Nav/Nav';
 
@@ -33,15 +33,28 @@ function App() {
     theme === 'light' ? setTheme('dark') : setTheme('light');
   }
     
-      useEffect(() => {
-        const cancelSubscription = auth.onAuthStateChanged(userInfo => {
-          setUser(userInfo);
-        });
+  useEffect(() => {
+    const cancelSubscription = auth.onAuthStateChanged(userInfo => {
+      setUser(userInfo);
+    });
 
-        return function() { // cleanup function
-          cancelSubscription();
-        }
-      }, [user]);
+    return function() { // cleanup function
+      cancelSubscription();
+    }
+  }, [user]);
+
+  const [clothesState, setClothesState] = useState({
+    clothes: []
+  });
+
+  useEffect(() => {
+    async function getClothes() {
+      const clothes = await fetchClothes();
+      setClothesState({ clothes });
+    }
+
+    getClothes();
+  }, []);
 
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme }>
@@ -56,23 +69,28 @@ function App() {
         setUser={setUser}
       />
       <Switch>
-      <Route exact path = "/" render={(props) => 
-      <HomePage />
+        <Route exact path = "/" render={(props) => 
+          <HomePage />
+        } />
+        <Route exact path = "/mens" render={(props) =>
+          <MensPage
+             {...props}
+              clothes={clothesState.clothes}                               
+          />
       } />
-      <Route exact path = "/mens" render={(props) =>
-      <MensPage/>
+        <Route exact path = "/womens" render={(props) =>
+          <WomensPage
+            {...props}
+              clothes={clothesState.clothes}                                
+          />
       } />
-      <Route exact path = "/womens" render={(props) =>
-      <WomensPage/>
-      } />
-      <Route exact path = "/checkout" render={(props) => 
-      <Checkout />
+        <Route exact path = "/checkout" render={(props) => 
+          <Checkout />
       } />
     </Switch>
     <Footer />
     </StyledApp>
     </ThemeProvider>
-
   );
 }
 

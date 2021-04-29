@@ -1,11 +1,12 @@
-import ClothingSection2 from '../../components/ClothingSection2/ClothingSection2';
+import ClothingSection from '../../components/ClothingSection/ClothingSection';
 
 function WomensPage(props) {
     return (
         <div>
-        <ClothingSection2/>
-
-
+            <ClothingSection
+                {...props}
+                clothes={props.clothes}
+            />
         </div>
     );
 };

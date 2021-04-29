@@ -1,5 +1,6 @@
 import './ClothingCard.css';
 
+
 function ClothingCard(props) {
   // Get data from each clothing card - this will be submitted to backend on form submit, currently only prints to console
   function handleSubmit(evt) {
@@ -33,7 +34,7 @@ function ClothingCard(props) {
                 <option value="2XL">2XL</option>
               </select>
             </label>
-            <input className="submit-button" type="submit" value="Add to Cart"/>
+            <input className="submit-button" type="submit" value="add to cart"/>
             </div>
           </form>
       </div>

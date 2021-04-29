@@ -14,7 +14,7 @@ function ClothingCard(props) {
 
     return (
         <div className="clothing-card">
-          <img className="item-image" src={props.clothing.imagePath} alt={props.clothing.name}/>
+          <img className="item-image" src={props.clothing.picture} alt={props.clothing.name}/>
           <h2 className="item-name">{props.clothing.name}</h2>
           <p className="item-price">{`$${props.clothing.price}`}</p>
           <p className="item-description">{props.clothing.description}</p>

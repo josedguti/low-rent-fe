@@ -3,7 +3,7 @@ import blackshirt from '../../img/blackshirt.jpg';
 import whiteshirt from '../../img/whiteshirt.jpg';
 import bluepants from '../../img/bluepants.jpg';
 import blackpants from '../../img/blackpants.jpg';
-
+import './ClothingSection.css'
 const ClothingSection = () => {
     // temporary clothing data, will be updated
     const clothingArray = [{

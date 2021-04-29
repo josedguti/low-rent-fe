@@ -4,23 +4,32 @@ import './Nav.css';
 
 const Nav = (props) => {
     return (
+    
+        
         <nav>
+            <Link style={{textDecoration: 'none'}} className="title" to='/'><h1>low-rent</h1></Link>
             <ul>
+                <Link style={{textDecoration: 'none', color:'black' }} to='/mens'><li>Men</li></Link>
+                <Link style={{textDecoration: 'none', color: 'black'}} to='/womens'><li>WomXn</li></Link>
                 {
                     props.user ?
                     <>
-
-                    <Link style={{textDecoration: 'none', color:'black' }} to='/mens'><li>Men</li></Link>
-                    <Link style={{textDecoration: 'none', color: 'black'}} to='/womens'><li>WomXn</li></Link>
+                    
+                        <li className='username'>Welcome, {props.user.displayName}</li> 
+                        <li><img src={props.user.photoURL} alt={props.user.displayName} /></li>
+                    
+                    
                     <Link style={{textDecoration: 'none', color: 'black'}}to='/checkout'><li>Checkout</li></Link>
 
                     <li onClick={logout}>Logout</li>
                     </>
                     :
+                    
                     <li onClick={login}>Login</li>
                 }
             </ul>
         </nav>
+    
     );
 }
  

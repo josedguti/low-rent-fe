@@ -29,7 +29,6 @@ function App() {
 
   return (
     <div className="App">
-      <header><Link style={{textDecoration: 'none'}} className="title" to='/'><h1>low-rent</h1></Link></header>
       <Nav
         user={user}
         setUser={setUser}

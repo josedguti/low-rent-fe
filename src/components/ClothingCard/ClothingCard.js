@@ -13,10 +13,10 @@ function ClothingCard(props) {
 
     return (
         <div className="clothing-card">
+          <img className="item-image" src={props.clothing.imagePath} alt={props.clothing.name}/>
           <h2 className="item-name">{props.clothing.name}</h2>
           <p className="item-price">{`$${props.clothing.price}`}</p>
           <p className="item-description">{props.clothing.description}</p>
-          <img className="item-image" src={props.clothing.imagePath} alt={props.clothing.name}/>
           <form onSubmit={handleSubmit}>
             <input type="hidden" name="name" value={props.clothing.name} />
             <input type="hidden" name="price" value={props.clothing.price} />

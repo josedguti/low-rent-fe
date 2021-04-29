@@ -14,8 +14,24 @@ import { Route, Switch } from 'react-router-dom'
 import Footer from './components/Footer/Footer';
 import Nav from './components/Nav/Nav';
 
+// Light and Dark mode theme components
+import styled, { ThemeProvider } from 'styled-components';
+import {lightTheme, darkTheme, GlobalStyles } from './themes.js';
+
+const StyledApp = styled.div`
+
+  color: ${(props) => props.theme.fontColor};
+
+`;
+
 function App() {
   const [user, setUser] = useState(null);
+  // Darkmode and lightmode variables 
+  const [theme, setTheme] = useState('light');
+
+  const themeToggler = () => {
+    theme === 'light' ? setTheme('dark') : setTheme('light');
+  }
     
       useEffect(() => {
         const cancelSubscription = auth.onAuthStateChanged(userInfo => {
@@ -28,7 +44,13 @@ function App() {
       }, [user]);
 
   return (
-    <div className="App">
+    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme }>
+      <GlobalStyles />
+    <StyledApp className="App">
+      <label className='switch'>
+        <input type="checkbox"/>
+      <span className='slider round' onClick={() => themeToggler()}></span>
+      </label>
       <Nav
         user={user}
         setUser={setUser}
@@ -48,7 +70,9 @@ function App() {
       } />
     </Switch>
     <Footer />
-    </div>
+    </StyledApp>
+    </ThemeProvider>
+
   );
 }
 

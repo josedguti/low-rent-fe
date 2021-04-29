@@ -1,6 +1,11 @@
 import { Link } from 'react-router-dom';
 import { login, logout } from '../../services/firebase';
+import { withTheme } from 'styled-components';
 import './Nav.css';
+
+const theme = {
+    main: 'white',
+};
 
 const Nav = (props) => {
     return (

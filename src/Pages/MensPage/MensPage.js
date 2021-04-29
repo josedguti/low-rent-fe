@@ -4,7 +4,7 @@ function MensPage(props) {
     return (
         <div>
         <h2></h2>
-        <ClothingSection/>
+        <ClothingSection clothes={props.clothes}/>
         
         </div>
     );

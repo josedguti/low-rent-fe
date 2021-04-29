@@ -5,23 +5,32 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    
 }
 
 .clothing-card p {
+    margin-top: 25px;
     margin: .3rem;
 }
 
 .item-image {
     width: 50%;
+    height: 16vh;
     margin: 1rem 0;
 }
 
 #size {
+    margin-top: 3rem;
     margin-left: .5rem;
 }
 
 .submit-button {
-    display: block;
-    margin: 1rem;
+    margin-left: 1rem;
+    margin-top: 3rem;
+}
+
+.button-row{
+    display: flex;
+    flex-direction: row;
 }

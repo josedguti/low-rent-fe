@@ -22,6 +22,7 @@ function ClothingCard(props) {
             <input type="hidden" name="price" value={props.clothing.price} />
             <input type="hidden" name="description" value={props.clothing.description} />
             <input type="hidden" name="imagePath" value={props.clothing.imagePath} />
+            <div className="button-row">
             <label className="item-size" htmlFor="size"> Size:
               <select name="size" id="size">
                 <option value="XS">XS</option>
@@ -33,6 +34,7 @@ function ClothingCard(props) {
               </select>
             </label>
             <input className="submit-button" type="submit" value="Add to Cart"/>
+            </div>
           </form>
       </div>
     );

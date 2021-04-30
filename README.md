@@ -15,9 +15,17 @@ Low-Rent is a mock Online Clothing Store where you select the items that you lik
 
 ## 📷 Screenshots
 
+- Wireframe
 ![wireframe](/src/img/wireframe.png)
+
+- Women Section
 ![websitepic1](/src/img/websitepic1.png)
+
+- Men Section
 ![websitepic2](/src/img/websitepic2.png)
+
+- Dark Mode
+![websitepic3](/src/img/websitepic3.png)
 
 ## 🔌 Getting Started
 

@@ -15,6 +15,10 @@ const ClothingSection = (props) => {
                     <ClothingCard
                         key={idx}
                         clothing={clothing}
+                        user={props.user}
+                        wishlistState={props.wishlistState}
+                        setWishlistState={props.setWishlistState}
+                        findOrCreateList={props.findOrCreateList}
                     />
                 )
             }

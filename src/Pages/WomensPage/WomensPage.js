@@ -6,6 +6,10 @@ function WomensPage(props) {
             <ClothingSection
                 {...props}
                 clothes={props.clothes}
+                user={props.user}
+                wishlistState={props.wishlistState}
+                setWishlistState={props.setWishlistState}
+                findOrCreateList={props.findOrCreateList}
             />
         </div>
     );

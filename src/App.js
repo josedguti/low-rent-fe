@@ -25,14 +25,15 @@ const StyledApp = styled.div`
 `;
 
 function App() {
-  // create user state and set user on firebase login
-  const [user, setUser] = useState(null);
   // Darkmode and lightmode variables 
   const [theme, setTheme] = useState('light');
-
+  
   const themeToggler = () => {
     theme === 'light' ? setTheme('dark') : setTheme('light');
   }
+
+  // create user state and set user on firebase login
+  const [user, setUser] = useState(null);
     
   useEffect(() => {
     const cancelSubscription = auth.onAuthStateChanged(userInfo => {
@@ -80,22 +81,37 @@ function App() {
     if (user) {
       // check all wishlists in db to see if one exists for current user
       let userList = wishlistState.lists.find(list => list.userId === user.uid);
-
+      console.log('userList first check: ', userList);
+      
       // if no list was found for the user, create a new one
       if (userList === undefined) {
+        console.log('userList was undefined, creating new one now');
+
+        // create new wishlist and get all wishlists back from db
         const updatedLists = await createWishlist({userId: user.uid});
+        console.log('updatedLists: ', updatedLists);
+
+        // find the new wishlist that was just created for the user
         userList = updatedLists.find(list => list.userId === user.uid);
+        console.log('userList check from updatedLists: ', userList);
+
+        console.log('wishlistState initial state: ', wishlistState);
+
+        // set state to include all wishlists - including new one just created
         setWishlistState(prevState => ({
           ...prevState,
-          lists: [updatedLists]
+          lists: updatedLists
         }));
       }
-
+      console.log('wishlistState after set updatedLists: ', wishlistState);
+      
+      // set state to hold the list for the logged in user
       setWishlistState(prevState => ({
         ...prevState,
         userList
       }));
     }
+    console.log('wishlistState after set userList: ', wishlistState);
   }
 
   return (

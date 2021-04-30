@@ -2,7 +2,7 @@ import './App.css';
 import { auth } from './services/firebase';
 import { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { fetchClothes, fetchWishlists, createWishlist } from './services/api-service';
+import { fetchClothes, fetchWishlists, createWishlist, createCloset } from './services/api-service';
 
 // Imported Pages 
 import HomePage from './Pages/HomePage/HomePage';
@@ -48,7 +48,7 @@ function App() {
   // create wishlist state and pull all from database
   const [wishlistState, setWishlistState] = useState({
     lists: [],
-    userList: null
+    userListId: null
   });
 
   useEffect(() => {
@@ -81,37 +81,43 @@ function App() {
     if (user) {
       // check all wishlists in db to see if one exists for current user
       let userList = wishlistState.lists.find(list => list.userId === user.uid);
-      console.log('userList first check: ', userList);
       
       // if no list was found for the user, create a new one
       if (userList === undefined) {
-        console.log('userList was undefined, creating new one now');
-
-        // create new wishlist and get all wishlists back from db
-        const updatedLists = await createWishlist({userId: user.uid});
-        console.log('updatedLists: ', updatedLists);
-
-        // find the new wishlist that was just created for the user
-        userList = updatedLists.find(list => list.userId === user.uid);
-        console.log('userList check from updatedLists: ', userList);
-
-        console.log('wishlistState initial state: ', wishlistState);
-
-        // set state to include all wishlists - including new one just created
-        setWishlistState(prevState => ({
-          ...prevState,
-          lists: updatedLists
-        }));
-      }
-      console.log('wishlistState after set updatedLists: ', wishlistState);
-      
+        try {
+          // create new wishlist and get all wishlists back from db
+          const updatedLists = await createWishlist({userId: user.uid});
+  
+          // find the new wishlist that was just created for the user
+          userList = updatedLists.find(list => list.userId === user.uid);
+  
+          // set state to include all wishlists - including new one just created
+          setWishlistState(prevState => ({
+            ...prevState,
+            lists: updatedLists
+          }));
+        } catch (error) {
+          console.log(error);
+        }
+      }      
       // set state to hold the list for the logged in user
       setWishlistState(prevState => ({
         ...prevState,
-        userList
+        userListId: userList.id
       }));
     }
-    console.log('wishlistState after set userList: ', wishlistState);
+  }
+
+  useEffect(() => {
+    findOrCreateList();
+  }, [user]);
+  
+  async function addClothingToListList(input) {
+    try {
+      await createCloset(input);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -137,7 +143,7 @@ function App() {
             user={user}
             wishlistState={wishlistState}
             setWishlistState={setWishlistState}
-            findOrCreateList={findOrCreateList}
+            addClothingToListList={addClothingToListList}
           />
       } />
         <Route exact path = "/womens" render={(props) =>
@@ -147,17 +153,12 @@ function App() {
             user={user}
             wishlistState={wishlistState}
             setWishlistState={setWishlistState}
-            findOrCreateList={findOrCreateList}
-          />
-      } />
+            addClothingToListList={addClothingToListList}
+            />
+          } />
         <Route exact path = "/checkout" render={(props) => 
-          <Checkout 
-          user={ user}
-          {...props}
-          clothes={clothesState.clothes}
-          wishlistState={wishlistState}
-          setWishlistState={setWishlistState}
-          findOrCreateList={findOrCreateList}
+          <Checkout
+            wishlistState={wishlistState}          
           />
       } />
     </Switch>

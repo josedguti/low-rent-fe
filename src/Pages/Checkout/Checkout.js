@@ -1,9 +1,19 @@
 function Checkout(props) {
     return (
-        <div>
-        
-        
-        </div>
+        <div className="checkout-container">
+
+        {      
+            props.user &&
+                <table>
+            {props.wishlistState.userList.clothes.map((item) => ( 
+                <fieldset>
+                    <p>{item.name}</p>
+                    <p>{item.price}</p>
+                </fieldset>
+            ))} 
+            </table>
+        }
+            </div>
     );
 };
 

@@ -151,7 +151,14 @@ function App() {
           />
       } />
         <Route exact path = "/checkout" render={(props) => 
-          <Checkout />
+          <Checkout 
+          user={ user}
+          {...props}
+          clothes={clothesState.clothes}
+          wishlistState={wishlistState}
+          setWishlistState={setWishlistState}
+          findOrCreateList={findOrCreateList}
+          />
       } />
     </Switch>
     <Footer />

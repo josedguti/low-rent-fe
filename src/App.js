@@ -48,7 +48,7 @@ function App() {
   // create wishlist state and pull all from database
   const [wishlistState, setWishlistState] = useState({
     lists: [],
-    userList: null
+    userListId: null
   });
 
   useEffect(() => {
@@ -103,7 +103,7 @@ function App() {
       // set state to hold the list for the logged in user
       setWishlistState(prevState => ({
         ...prevState,
-        userList
+        userListId: userList.id
       }));
     }
   }
@@ -157,7 +157,9 @@ function App() {
             />
           } />
         <Route exact path = "/checkout" render={(props) => 
-          <Checkout />
+          <Checkout
+            wishlistState={wishlistState}          
+          />
       } />
     </Switch>
     <Footer />

@@ -1,12 +1,9 @@
 import './ClothingCard.css';
 
-
 function ClothingCard(props) {
   // Get data from each clothing card - this will be submitted to backend on form submit, currently only prints to console
   function handleSubmit(evt) {
     evt.preventDefault();
-
-    props.findOrCreateList();
     
     props.addClothingToListList({
       clothes_id: props.clothing.id,

@@ -107,6 +107,10 @@ function App() {
       }));
     }
   }
+
+  useEffect(() => {
+    findOrCreateList();
+  }, [user]);
   
   async function addClothingToListList(input) {
     try {
@@ -152,10 +156,14 @@ function App() {
             setWishlistState={setWishlistState}
             findOrCreateList={findOrCreateList}
             addClothingToListList={addClothingToListList}
-          />
-      } />
+            />
+          } />
         <Route exact path = "/checkout" render={(props) => 
-          <Checkout />
+          <Checkout
+            user={user}  
+            wishlistState={wishlistState}
+            findOrCreateList={findOrCreateList}
+          />
       } />
     </Switch>
     <Footer />

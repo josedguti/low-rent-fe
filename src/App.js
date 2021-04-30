@@ -14,9 +14,25 @@ import Checkout from './Pages/Checkout/Checkout';
 import Footer from './components/Footer/Footer';
 import Nav from './components/Nav/Nav';
 
+// Light and Dark mode theme components
+import styled, { ThemeProvider } from 'styled-components';
+import {lightTheme, darkTheme, GlobalStyles } from './themes.js';
+
+const StyledApp = styled.div`
+
+  color: ${(props) => props.theme.fontColor};
+
+`;
+
 function App() {
   // create user state and set user on firebase login
   const [user, setUser] = useState(null);
+  // Darkmode and lightmode variables 
+  const [theme, setTheme] = useState('light');
+
+  const themeToggler = () => {
+    theme === 'light' ? setTheme('dark') : setTheme('light');
+  }
     
   useEffect(() => {
     const cancelSubscription = auth.onAuthStateChanged(userInfo => {
@@ -83,7 +99,13 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme }>
+      <GlobalStyles />
+    <StyledApp className="App">
+      <label className='switch'>
+        <input type="checkbox"/>
+      <span className='slider round' onClick={() => themeToggler()}></span>
+      </label>
       <Nav
         user={user}
         setUser={setUser}
@@ -101,7 +123,7 @@ function App() {
             setWishlistState={setWishlistState}
             findOrCreateList={findOrCreateList}
           />
-        } />
+      } />
         <Route exact path = "/womens" render={(props) =>
           <WomensPage
             {...props}
@@ -111,13 +133,14 @@ function App() {
             setWishlistState={setWishlistState}
             findOrCreateList={findOrCreateList}
           />
-        } />
+      } />
         <Route exact path = "/checkout" render={(props) => 
           <Checkout />
-        } />
-      </Switch>
-      <Footer />
-    </div>
+      } />
+    </Switch>
+    <Footer />
+    </StyledApp>
+    </ThemeProvider>
   );
 }
 

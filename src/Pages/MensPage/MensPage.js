@@ -9,7 +9,6 @@ function MensPage(props) {
                 user={props.user}
                 wishlistState={props.wishlistState}
                 setWishlistState={props.setWishlistState}
-                findOrCreateList={props.findOrCreateList}
                 addClothingToListList={props.addClothingToListList}
             />
         </div>

@@ -21,6 +21,9 @@ export const GlobalStyles = createGlobalStyle`
         color: ${props => props.theme.linkcolor};
         text-decoration: none;
     }
+    .footer {
+        color: ${props => props.theme.linkcolor};
+    }
 
 
 `;

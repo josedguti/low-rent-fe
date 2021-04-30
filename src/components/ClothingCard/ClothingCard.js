@@ -5,11 +5,15 @@ function ClothingCard(props) {
   // Get data from each clothing card - this will be submitted to backend on form submit, currently only prints to console
   function handleSubmit(evt) {
     evt.preventDefault();
+
     console.log('name: ', evt.target.name.value);
     console.log('price: ', evt.target.price.value);
     console.log('description: ', evt.target.description.value);
     console.log('picture: ', evt.target.picture.value);
     console.log('size: ', evt.target.size.value);
+
+    props.findOrCreateList();
+
   }
 
     return (

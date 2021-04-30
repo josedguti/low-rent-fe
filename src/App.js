@@ -2,7 +2,7 @@ import './App.css';
 import { auth } from './services/firebase';
 import { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { fetchClothes } from './services/api-service';
+import { fetchClothes, fetchWishlists, createWishlist } from './services/api-service';
 
 // Imported Pages 
 import HomePage from './Pages/HomePage/HomePage';
@@ -15,6 +15,7 @@ import Footer from './components/Footer/Footer';
 import Nav from './components/Nav/Nav';
 
 function App() {
+  // create user state and set user on firebase login
   const [user, setUser] = useState(null);
     
   useEffect(() => {
@@ -27,6 +28,25 @@ function App() {
     }
   }, [user]);
 
+  // create wishlist state and pull all from database
+  const [wishlistState, setWishlistState] = useState({
+    lists: [],
+    userList: null
+  });
+
+  useEffect(() => {
+    async function getWishlists() {
+      const lists = await fetchWishlists();
+      setWishlistState(prevState => ({
+        ...prevState,
+        lists
+      }));
+    }
+    
+    getWishlists();
+  }, [user]);
+
+  // create clothes state and pull all from database
   const [clothesState, setClothesState] = useState({
     clothes: []
   });
@@ -39,6 +59,28 @@ function App() {
 
     getClothes();
   }, []);
+
+  async function findOrCreateList() {
+    if (user) {
+      // check all wishlists in db to see if one exists for current user
+      let userList = wishlistState.lists.find(list => list.userId === user.uid);
+
+      // if no list was found for the user, create a new one
+      if (userList === undefined) {
+        const updatedLists = await createWishlist({userId: user.uid});
+        userList = updatedLists.find(list => list.userId === user.uid);
+        setWishlistState(prevState => ({
+          ...prevState,
+          lists: [updatedLists]
+        }));
+      }
+
+      setWishlistState(prevState => ({
+        ...prevState,
+        userList
+      }));
+    }
+  }
 
   return (
     <div className="App">
@@ -54,12 +96,20 @@ function App() {
           <MensPage
             {...props}
             clothes={clothesState.clothes}
+            user={user}
+            wishlistState={wishlistState}
+            setWishlistState={setWishlistState}
+            findOrCreateList={findOrCreateList}
           />
         } />
         <Route exact path = "/womens" render={(props) =>
           <WomensPage
             {...props}
             clothes={clothesState.clothes}
+            user={user}
+            wishlistState={wishlistState}
+            setWishlistState={setWishlistState}
+            findOrCreateList={findOrCreateList}
           />
         } />
         <Route exact path = "/checkout" render={(props) => 

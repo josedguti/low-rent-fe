@@ -6,14 +6,14 @@ function ClothingCard(props) {
   function handleSubmit(evt) {
     evt.preventDefault();
 
-    console.log('name: ', evt.target.name.value);
-    console.log('price: ', evt.target.price.value);
-    console.log('description: ', evt.target.description.value);
-    console.log('picture: ', evt.target.picture.value);
-    console.log('size: ', evt.target.size.value);
-
     props.findOrCreateList();
-
+    
+    props.addClothingToListList({
+      clothes_id: props.clothing.id,
+      wishlist_id: props.wishlistState.userList.id,
+      qty: 1,
+      size: evt.target.size.value
+    });
   }
 
     return (
@@ -23,10 +23,6 @@ function ClothingCard(props) {
           <p className="item-price">{`$${props.clothing.price}`}</p>
           <p className="item-description">{props.clothing.description}</p>
           <form onSubmit={handleSubmit}>
-            <input type="hidden" name="name" value={props.clothing.name} />
-            <input type="hidden" name="price" value={props.clothing.price} />
-            <input type="hidden" name="description" value={props.clothing.description} />
-            <input type="hidden" name="picture" value={props.clothing.picture} />
             <div className="button-row">
             <label className="item-size" htmlFor="size"> Size:
               <select name="size" id="size">

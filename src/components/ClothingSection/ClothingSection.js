@@ -19,6 +19,7 @@ const ClothingSection = (props) => {
                         wishlistState={props.wishlistState}
                         setWishlistState={props.setWishlistState}
                         findOrCreateList={props.findOrCreateList}
+                        addClothingToListList={props.addClothingToListList}
                     />
                 )
             }

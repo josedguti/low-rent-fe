@@ -2,7 +2,7 @@ import './App.css';
 import { auth } from './services/firebase';
 import { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { fetchClothes, fetchWishlists, fetchClosets, createWishlist, createCloset, deleteCloset } from './services/api-service';
+import { fetchClothes, fetchWishlists, fetchClosets, createWishlist, createCloset, deleteCloset, updateCloset } from './services/api-service';
 
 // Imported Pages 
 import HomePage from './Pages/HomePage/HomePage';
@@ -144,6 +144,16 @@ function App() {
     }
   }
 
+  async function updateClothingInList(inputs) {
+    try {
+      const closets = await updateCloset(inputs);
+      let userClosets = closets.filter(closet => closet.wishlist_id === wishlistState.userListId);
+      setClosetState({ closets: userClosets });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme }>
       <GlobalStyles />
@@ -185,6 +195,7 @@ function App() {
             clothes={clothesState.clothes}
             closetState={closetState}
             deleteClothingFromList={deleteClothingFromList}
+            updateClothingInList={updateClothingInList}
           />
       } />
     </Switch>

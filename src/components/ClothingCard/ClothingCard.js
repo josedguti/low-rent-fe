@@ -5,7 +5,7 @@ function ClothingCard(props) {
   function handleSubmit(evt) {
     evt.preventDefault();
     
-    props.addClothingToListList({
+    props.addClothingToList({
       clothes_id: props.clothing.id,
       wishlist_id: props.wishlistState.userListId,
       qty: 1,

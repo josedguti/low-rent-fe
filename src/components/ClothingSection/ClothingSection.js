@@ -18,7 +18,7 @@ const ClothingSection = (props) => {
                         user={props.user}
                         wishlistState={props.wishlistState}
                         setWishlistState={props.setWishlistState}
-                        addClothingToListList={props.addClothingToListList}
+                        addClothingToList={props.addClothingToList}
                     />
                 )
             }

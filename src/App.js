@@ -112,7 +112,7 @@ function App() {
     findOrCreateList();
   }, [user]);
   
-  async function addClothingToListList(input) {
+  async function addClothingToList(input) {
     try {
       await createCloset(input);
     } catch (error) {
@@ -143,7 +143,7 @@ function App() {
             user={user}
             wishlistState={wishlistState}
             setWishlistState={setWishlistState}
-            addClothingToListList={addClothingToListList}
+            addClothingToList={addClothingToList}
           />
       } />
         <Route exact path = "/womens" render={(props) =>
@@ -153,7 +153,7 @@ function App() {
             user={user}
             wishlistState={wishlistState}
             setWishlistState={setWishlistState}
-            addClothingToListList={addClothingToListList}
+            addClothingToList={addClothingToList}
             />
           } />
         <Route exact path = "/checkout" render={(props) => 

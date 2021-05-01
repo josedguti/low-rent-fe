@@ -2,7 +2,7 @@ import './App.css';
 import { auth } from './services/firebase';
 import { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { fetchClothes, fetchWishlists, createWishlist, createCloset } from './services/api-service';
+import { fetchClothes, fetchWishlists, fetchClosets, createWishlist, createCloset, deleteCloset } from './services/api-service';
 
 // Imported Pages 
 import HomePage from './Pages/HomePage/HomePage';
@@ -63,6 +63,20 @@ function App() {
     getWishlists();
   }, [user]);
 
+  const [closetState, setClosetState] = useState({
+    closets: [],
+  });
+
+  useEffect(() => {
+    async function getClosets() {
+      const closets = await fetchClosets();
+      let userClosets = closets.filter(closet => closet.wishlist_id === wishlistState.userListId);
+      setClosetState({ closets: userClosets });
+    }
+    
+    getClosets();
+  }, [wishlistState.userListId]);
+
   // create clothes state and pull all from database
   const [clothesState, setClothesState] = useState({
     clothes: []
@@ -81,16 +95,13 @@ function App() {
     if (user) {
       // check all wishlists in db to see if one exists for current user
       let userList = wishlistState.lists.find(list => list.userId === user.uid);
-      
       // if no list was found for the user, create a new one
       if (userList === undefined) {
         try {
           // create new wishlist and get all wishlists back from db
           const updatedLists = await createWishlist({userId: user.uid});
-  
           // find the new wishlist that was just created for the user
           userList = updatedLists.find(list => list.userId === user.uid);
-  
           // set state to include all wishlists - including new one just created
           setWishlistState(prevState => ({
             ...prevState,
@@ -114,7 +125,20 @@ function App() {
   
   async function addClothingToList(input) {
     try {
-      await createCloset(input);
+      // create closet with input object containing clothing id, wishlist id, quantity of 1, and size
+      const closets = await createCloset(input);
+      let userClosets = closets.filter(closet => closet.wishlist_id === wishlistState.userListId);
+      setClosetState({ closets: userClosets });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function deleteClothingFromList(closetId) {
+    try {
+      const closets = await deleteCloset(closetId);
+      let userClosets = closets.filter(closet => closet.wishlist_id === wishlistState.userListId);
+      setClosetState({ closets: userClosets });
     } catch (error) {
       console.log(error);
     }
@@ -158,7 +182,9 @@ function App() {
           } />
         <Route exact path = "/checkout" render={(props) => 
           <Checkout
-            wishlistState={wishlistState}          
+            clothes={clothesState.clothes}
+            closetState={closetState}
+            deleteClothingFromList={deleteClothingFromList}
           />
       } />
     </Switch>

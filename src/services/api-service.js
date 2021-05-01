@@ -18,6 +18,16 @@ function createWishlist(data) {
     }).then(res => res.json());
 }
 
+function deleteWishlist(id) {
+    return fetch(`${BASE_URL}/wishlists/${id}`, {
+        method: 'DELETE'
+    }).then(res => res.json());
+}
+
+function fetchClosets() {
+    return fetch(`${BASE_URL}/closets`).then(res => res.json());
+}
+
 function createCloset(input) {
     return fetch(`${BASE_URL}/closets`, {
         method: 'POST',
@@ -28,27 +38,19 @@ function createCloset(input) {
     }).then(res => res.json());
 }
 
-function deleteWishlist(id) {
-    return fetch(`${BASE_URL}/wishlists/${id}`, {
+function deleteCloset(id) {
+    return fetch(`${BASE_URL}/closets/${id}`, {
         method: 'DELETE'
     }).then(res => res.json());
 }
 
-// function updateWishlist({ category, description, name, picture, price }, wishlistId) {
-//     return fetch(`${BASE_URL}/wishlists/${wishlistId}`, {
-//         method: 'PUT',
-//         headers: {
-//             'Content-type': 'application/json'
-//         },
-//         body: JSON.stringify({ category, description, name, picture, price })
-//     }).then(res => res.json());
-// }
 
 export {
     fetchClothes,
     fetchWishlists,
     createWishlist,
     deleteWishlist,
-    // updateWishlist,
-    createCloset
+    fetchClosets,
+    createCloset,
+    deleteCloset
 }

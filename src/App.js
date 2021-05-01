@@ -114,7 +114,7 @@ function App() {
       // set state to hold the list for the logged in user
       setWishlistState(prevState => ({
         ...prevState,
-        userListId: userList?.id
+        userListId: userList.id
       }));
     }
   }
@@ -126,7 +126,9 @@ function App() {
   async function addClothingToList(input) {
     try {
       // create closet with input object containing clothing id, wishlist id, quantity of 1, and size
-      await createCloset(input);
+      const closets = await createCloset(input);
+      let userClosets = closets.filter(closet => closet.wishlist_id === wishlistState.userListId);
+      setClosetState({ closets: userClosets });
     } catch (error) {
       console.log(error);
     }
@@ -180,7 +182,7 @@ function App() {
           } />
         <Route exact path = "/checkout" render={(props) => 
           <Checkout
-            wishlistState={wishlistState}
+            clothes={clothesState.clothes}
             closetState={closetState}
             deleteClothingFromList={deleteClothingFromList}
           />

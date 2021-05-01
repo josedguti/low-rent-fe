@@ -10,7 +10,7 @@ import MensPage from './Pages/MensPage/MensPage';
 import WomensPage from './Pages/WomensPage/WomensPage';
 import Checkout from './Pages/Checkout/Checkout';
 
-// Imported Components
+/// Imported Components
 import Footer from './components/Footer/Footer';
 import Nav from './components/Nav/Nav';
 

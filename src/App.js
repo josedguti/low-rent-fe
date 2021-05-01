@@ -2,7 +2,7 @@ import './App.css';
 import { auth } from './services/firebase';
 import { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { fetchClothes, fetchWishlists, createWishlist, createCloset } from './services/api-service';
+import { fetchClothes, fetchWishlists, fetchClosets, createWishlist, createCloset, deleteCloset } from './services/api-service';
 
 // Imported Pages 
 import HomePage from './Pages/HomePage/HomePage';
@@ -63,6 +63,19 @@ function App() {
     getWishlists();
   }, [user]);
 
+  const [closetState, setClosetState] = useState({
+    closets: [],
+  });
+
+  useEffect(() => {
+    async function getClosets() {
+      const closets = await fetchClosets();
+      setClosetState({ closets });
+    }
+    
+    getClosets();
+  }, []);
+
   // create clothes state and pull all from database
   const [clothesState, setClothesState] = useState({
     clothes: []
@@ -114,7 +127,16 @@ function App() {
   
   async function addClothingToList(input) {
     try {
+      // create closet with input object containing clothing id, wishlist id, quantity of 1, and size
       await createCloset(input);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function deleteClothingFromList(closetId) {
+    try {
+      await deleteCloset(closetId);
     } catch (error) {
       console.log(error);
     }
@@ -158,7 +180,9 @@ function App() {
           } />
         <Route exact path = "/checkout" render={(props) => 
           <Checkout
-            wishlistState={wishlistState}          
+            wishlistState={wishlistState}
+            closetState={closetState}
+            deleteClothingFromList={deleteClothingFromList}
           />
       } />
     </Switch>

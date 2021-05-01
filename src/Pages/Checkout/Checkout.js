@@ -1,11 +1,14 @@
 function Checkout(props) {
-    let userList = props.wishlistState.lists.find(list => list.id === props.wishlistState.userListId);
+    let userClosets = props.closetState.closets.filter(closet => closet.wishlist_id === props.wishlistState.userListId);
+
     return (
         <div>
-            {userList.clothes.map((clothing, idx) => (
+            {userClosets.map((closet, idx) => (
                 <div key={idx}>
-                    <p>{clothing.name}</p>
-                    <p>${clothing.price}</p>
+                    <p>{closet.clothes.name}</p>
+                    <p>${closet.clothes.price}</p>
+                    <p>{closet.size}</p>
+                    <button onClick={() => props.deleteClothingFromList(closet.id)}>Delete</button>
                 </div>
             ))}
         </div>

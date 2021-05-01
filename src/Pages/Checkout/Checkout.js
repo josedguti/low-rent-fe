@@ -9,6 +9,7 @@ function Checkout(props) {
                     closet={closet}
                     clothes={props.clothes}
                     deleteClothingFromList={props.deleteClothingFromList}
+                    updateClothingInList={props.updateClothingInList}
                 />
             ))}
         </div>

@@ -44,6 +44,15 @@ function deleteCloset(id) {
     }).then(res => res.json());
 }
 
+function updateCloset({ size, qty, id }) {
+    return fetch(`${BASE_URL}/closets/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        body: JSON.stringify({ size, qty })
+    }).then(res => res.json());
+}
 
 export {
     fetchClothes,
@@ -52,5 +61,6 @@ export {
     deleteWishlist,
     fetchClosets,
     createCloset,
-    deleteCloset
+    deleteCloset,
+    updateCloset
 }

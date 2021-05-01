@@ -7,7 +7,7 @@ function ClothingCard(props) {
     
     props.addClothingToListList({
       clothes_id: props.clothing.id,
-      wishlist_id: props.wishlistState.userList.id,
+      wishlist_id: props.wishlistState.userListId,
       qty: 1,
       size: evt.target.size.value
     });

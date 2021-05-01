@@ -70,11 +70,12 @@ function App() {
   useEffect(() => {
     async function getClosets() {
       const closets = await fetchClosets();
-      setClosetState({ closets });
+      let userClosets = closets.filter(closet => closet.wishlist_id === wishlistState.userListId);
+      setClosetState({ closets: userClosets });
     }
     
     getClosets();
-  }, []);
+  }, [wishlistState.userListId]);
 
   // create clothes state and pull all from database
   const [clothesState, setClothesState] = useState({
@@ -94,16 +95,13 @@ function App() {
     if (user) {
       // check all wishlists in db to see if one exists for current user
       let userList = wishlistState.lists.find(list => list.userId === user.uid);
-      
       // if no list was found for the user, create a new one
       if (userList === undefined) {
         try {
           // create new wishlist and get all wishlists back from db
           const updatedLists = await createWishlist({userId: user.uid});
-  
           // find the new wishlist that was just created for the user
           userList = updatedLists.find(list => list.userId === user.uid);
-  
           // set state to include all wishlists - including new one just created
           setWishlistState(prevState => ({
             ...prevState,
@@ -116,7 +114,7 @@ function App() {
       // set state to hold the list for the logged in user
       setWishlistState(prevState => ({
         ...prevState,
-        userListId: userList.id
+        userListId: userList?.id
       }));
     }
   }
@@ -136,7 +134,9 @@ function App() {
 
   async function deleteClothingFromList(closetId) {
     try {
-      await deleteCloset(closetId);
+      const closets = await deleteCloset(closetId);
+      let userClosets = closets.filter(closet => closet.wishlist_id === wishlistState.userListId);
+      setClosetState({ closets: userClosets });
     } catch (error) {
       console.log(error);
     }

@@ -1,0 +1,15 @@
+.item-image3 {
+    width: 20%;
+    height: 100%;
+    margin:  0;
+    padding: 10px;
+}
+
+.clothing-card3 {
+    margin: 1rem auto;
+    padding: 2rem;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

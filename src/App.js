@@ -192,6 +192,7 @@ function App() {
           } />
         <Route exact path = "/checkout" render={(props) => 
           <Checkout
+          {...props}
             clothes={clothesState.clothes}
             closetState={closetState}
             deleteClothingFromList={deleteClothingFromList}

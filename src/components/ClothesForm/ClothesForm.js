@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import './ClothesForm.css';
 
 const ClothesForm = (props) => {
     const [formState, setFormState] = useState({
@@ -31,8 +32,9 @@ const ClothesForm = (props) => {
     }
     
     return (
-        <div>
-            <p>{props.clothing.name}</p>
+        <div className="clothing-card3">
+            <img className="item-image3" src={props.clothing.picture} alt={props.clothing.name}/>
+            <h2>{props.clothing.name}</h2>
             <p>${props.clothing.price}</p>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="size"> Size:

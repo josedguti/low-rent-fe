@@ -1,0 +1,39 @@
+
+
+.clothing-card2 {
+    margin: 1rem auto;
+    padding: 2rem;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+.item-image2 {
+    width: 35%;
+    height: 100%;
+    margin:  0;
+    padding: 10px;
+}
+
+#size {
+    margin-top: 3rem;
+    margin-left: .5rem;
+    border: transparent;
+}
+
+.submit-button {
+    margin-left: 1rem;
+    margin-top: 3rem;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    border: transparent;
+    font-family: 'system-ui'
+}
+
+.button-row {
+    display: flex;
+    flex-direction: row;
+}

@@ -29,7 +29,7 @@ Low-Rent is a mock Online Clothing Store where you select the items that you lik
 
 ## 🔌 Getting Started
 
-[Click]() to get started and see the app live!
+[Click](https://low-rent.netlify.app/) to get started and see the app live!
 
 ## 🛠 Future enhancements
 

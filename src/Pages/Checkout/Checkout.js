@@ -1,8 +1,9 @@
+import { Link } from 'react-router-dom';
 import CheckoutClothingCard from "../../components/CheckoutClothingCard/CheckoutClothingCard";
 
 function Checkout(props) {
     return (
-        <div>
+        <div className='checkout-container'>
             {props.closetState.closets.map((closet, idx) => (
                 <CheckoutClothingCard
                     key={idx}
@@ -10,9 +11,10 @@ function Checkout(props) {
                     clothes={props.clothes}
                     deleteClothingFromList={props.deleteClothingFromList}
                     updateClothingInList={props.updateClothingInList}
-                />
-            ))}
-        </div>
+                    />
+                    ))}
+                    <Link className='credit' to='/credit'>Checkout</Link>
+            </div>
     );
 };
 

@@ -9,6 +9,7 @@ import HomePage from './Pages/HomePage/HomePage';
 import MensPage from './Pages/MensPage/MensPage';
 import WomensPage from './Pages/WomensPage/WomensPage';
 import Checkout from './Pages/Checkout/Checkout';
+import Credit from './Pages/Credit/Credit';
 
 // Imported Components
 import Footer from './components/Footer/Footer';
@@ -199,6 +200,9 @@ function App() {
             updateClothingInList={updateClothingInList}
           />
       } />
+      <Route exact path = "/credit" render={(props) => 
+        <Credit />
+      }/>
     </Switch>
     <Footer />
     </StyledApp>

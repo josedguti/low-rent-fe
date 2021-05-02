@@ -48,7 +48,7 @@ const ClothesForm = (props) => {
                 </select>
                 </label>
                 <label htmlFor="qty">
-                    <input type="number" name="qty" id="qty" value={formState.qty} onChange={handleChange} />
+                    <input type="number" name="qty" id="qty" min="1" value={formState.qty} onChange={handleChange} />
                 </label>
                 <input type="submit" value="Update"/>
             </form>

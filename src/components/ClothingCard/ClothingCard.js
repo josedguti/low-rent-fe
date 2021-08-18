@@ -11,6 +11,7 @@ function ClothingCard(props) {
       qty: 1,
       size: evt.target.size.value
     });
+    alert('item added to cart');
   }
 
     return (

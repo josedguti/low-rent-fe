@@ -143,6 +143,7 @@ function App() {
     } catch (error) {
       console.log(error);
     }
+    alert('item has been deleted');
   }
 
   async function updateClothingInList(inputs) {
